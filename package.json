@@ -1,0 +1,29 @@
+{
+  "name": "smap",
+  "description": "A forward polyfill with ES6 Map utilities",
+  "author": "Eric Wendelin <me@eriwen.com> (http://eriwen.com)",
+  "version": "0.1.0",
+  "keywords": ["es6", "map"],
+  "homepage": "http://smapjs.com",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/eriwen/smap.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/eriwen/smap.js/issues"
+  },
+  "licenses": [{
+    "type": "MIT",
+    "url": "https://github.com/eriwen/smap.js/blob/master/LICENSE"
+  }],
+  "main": "./smap.js",
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "devDependencies": {
+    "grunt": "~0.3.17"
+  }
+}
