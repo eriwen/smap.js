@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>smap.js by eriwen</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>smap.js</h1>
+          <h2>A forward polyfill for ES6 Maps</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/eriwen/smap.js/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/eriwen/smap.js/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/eriwen/smap.js" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <p>Use ES6 Maps with a bunch of convenience methods. Help improve the ES6 spec!</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">map</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Map</span><span class="p">();</span>
+<span class="nx">map</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">'foo'</span><span class="p">,</span> <span class="s1">'bar'</span><span class="p">);</span>
+<span class="nx">map</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">42</span><span class="p">);</span>
+
+<span class="c1">// Filter map by a function</span>
+<span class="nx">map</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+   <span class="k">return</span> <span class="k">typeof</span> <span class="nx">key</span> <span class="o">==</span> <span class="s1">'string'</span><span class="p">;</span>
+<span class="p">});</span>
+<span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">Map</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">42</span><span class="p">]])</span>
+
+<span class="c1">// Merge Maps</span>
+<span class="nx">map</span><span class="p">.</span><span class="nx">merge</span><span class="p">(</span><span class="k">new</span> <span class="nx">Map</span><span class="p">([[</span><span class="s1">'baz'</span><span class="p">,</span> <span class="s1">'thing'</span><span class="p">]]));</span>
+<span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">Map</span><span class="p">([[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">42</span><span class="p">],</span> <span class="p">[</span><span class="s1">'baz'</span><span class="p">,</span> <span class="s1">'thing'</span><span class="p">]])</span>
+
+<span class="c1">// map.get with a default</span>
+<span class="nx">map</span><span class="p">.</span><span class="nx">fetch</span><span class="p">(</span><span class="s1">'NON_EXISTANT'</span><span class="p">,</span> <span class="s1">'default'</span><span class="p">);</span>
+<span class="o">=&gt;</span> <span class="s1">'default'</span>
+
+<span class="c1">// Invert map (makes keys-&gt;values and vice versa)</span>
+<span class="nx">map</span><span class="p">.</span><span class="nx">invert</span><span class="p">();</span>
+<span class="o">=&gt;</span> <span class="k">new</span> <span class="nx">Map</span><span class="p">([[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="s1">'thing'</span><span class="p">,</span> <span class="s1">'baz'</span><span class="p">]])</span>
+
+<span class="c1">// Destructive filter (inline map delete)</span>
+<span class="nx">map</span><span class="p">.</span><span class="nx">reject</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">key</span><span class="p">,</span> <span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="k">typeof</span> <span class="nx">key</span> <span class="o">==</span> <span class="s1">'string'</span><span class="p">;</span>
+<span class="p">});</span>
+<span class="nx">map</span><span class="p">.</span><span class="nx">has</span><span class="p">(</span><span class="s1">'thing'</span><span class="p">);</span>
+<span class="o">=&gt;</span> <span class="kc">false</span>
+
+<span class="c1">// Remove all items</span>
+<span class="nx">map</span><span class="p">.</span><span class="nx">clear</span><span class="p">();</span>
+
+<span class="c1">// Check if Map has no items</span>
+<span class="nx">map</span><span class="p">.</span><span class="nx">isEmpty</span><span class="p">();</span>
+<span class="o">=&gt;</span> <span class="kc">true</span>
+</pre></div>
+
+<h2>Installation</h2>
+
+<p>You can install this via npm for <a href="http://nodejs.org">node.js</a> v0.8+</p>
+
+<div class="highlight"><pre>npm install smap
+</pre></div>
+
+<p>For browsers, just include <a href="https://github.com/eriwen/smap.js/downloads">smap.js</a> in your page.</p>
+
+<h2>Environment Support</h2>
+
+<p>If you also use the <a href="https://github.com/kriskowal/es5-shim">es5-shim</a>, you can use this in:</p>
+
+<ul>
+<li>IE9+</li>
+<li>Google Chrome 21+</li>
+<li>Safari 4+</li>
+<li>Opera 12+</li>
+<li>Node.js 0.8+</li>
+<li>PhantomJS</li>
+</ul><h2>Why this project exists</h2>
+
+<p>Boris Smus <a href="http://smus.com/how-the-web-should-work/">makes an excellent suggestion</a> for moving the web forward: <em>forward polyfills</em>.
+I hope this project can be the basis for a future proposal to TC39. Please gratuitously <a href="https://github.com/eriwen/smap.js/issues">discuss Map and WeakMap workings in issues</a>, and add methods/tests with pull requests.</p>
+
+<p>This is for <em>everyone</em>, not just JavaScript gurus. Standards bodies want feedback from developers like you.</p>
+        </section>
+
+        <footer>
+          smap.js is maintained by <a href="https://github.com/eriwen">eriwen</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="http://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+                  <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-34997412-8");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+      </div>
+    </div>
+  </body>
+</html>
