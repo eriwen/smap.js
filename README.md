@@ -25,8 +25,8 @@ map.invert();
 => new Map([[42, 0], ['thing', 'baz']])
 
 // Destructive filter (inline map delete)
-map.reject(function(key, value) {
-  return typeof key == 'string';
+map.reject(function(key, value, index) {
+  return index < 3;
 });
 map.has('thing');
 => false

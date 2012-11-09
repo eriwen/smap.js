@@ -174,8 +174,8 @@
      * Given a filtering function, return a new Map of items matching that
      * function.
      *
-     * @param filterFn [Function] that takes 2 arguments and returns a Boolean.
-     * @return [Map] a new Map that is the subset of this map's items
+     * @param filterFn {Function} that takes up to 3 arguments and returns a Boolean.
+     * @return {Map} a new Map that is the subset of this map's items
      * that match the given filter function.
      */
     Map.prototype.filter = function(filterFn) {
@@ -193,8 +193,10 @@
 
     /**
      * Return a new Map that is the union of this Map and the given other Map.
-     * If there are conflicting keys, the item
-     * @param otherMap
+     * If there are conflicting keys, the item in the Map argument overrides.
+     *
+     * @param otherMap {Map}
+     * @return {Map} with all non-conflicting items
      */
     Map.prototype.merge = function(otherMap) {
         if (!(otherMap instanceof Map)) {
@@ -213,8 +215,9 @@
 
     /**
      * Get entry for given key, or if it doesn't exist the default value.
-     * @param key [Object]
-     * @param defaultValue [Object]
+     *
+     * @param key {Object} anything, including primitives
+     * @param defaultValue {Object}
      * @return item at key or default
      */
     Map.prototype.fetch = function(key, defaultValue) {
@@ -226,6 +229,8 @@
 
     /**
      * Return a new Map whose keys are the values of this Map, and values are keys.
+     *
+     * @return a new Map, this map inverted
      */
     Map.prototype.invert = function() {
         var _map = new Map();
@@ -236,7 +241,9 @@
     };
 
     /**
-     * In-place delete
+     * Remove items from this Map as designated by a filtering function.
+     *
+     * @param filterFn {Function} using key, value and/or index and returning a Boolean
      */
     Map.prototype.reject = function(filterFn) {
         if (typeof filterFn != 'function') {
