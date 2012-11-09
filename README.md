@@ -7,7 +7,7 @@ map.set('foo', 'bar');
 map.set(0, 42);
 
 // Filter map by a function
-map.filter(function(key, value) {
+map.filter(function(key, value, index) {
    return typeof key == 'string';
 });
 => new Map([[0, 42]])
@@ -61,6 +61,8 @@ If you also use the [es5-shim](https://github.com/kriskowal/es5-shim), you can u
  * Opera 12+
  * Node.js 0.8+
  * PhantomJS
+
+**NOTE:** Firefox is not yet supported due to its partial implementation of `Map` without `.keys()`. See [issue #4](https://github.com/eriwen/smap.js/issues/4).
 
 ## Why this project exists
 Boris Smus [makes an excellent suggestion](http://smus.com/how-the-web-should-work/) for moving the web forward: *forward polyfills*.
