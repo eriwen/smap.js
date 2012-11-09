@@ -1,7 +1,5 @@
 # smap.js - A forward polyfill for ES6 Maps
-Given a browser with ES6 Map partially implemented
-(or one polyfilled with [harmony-collections](https://github.com/Benvie/harmony-collections)), smap.js adds
-utility methods to Map.prototype like these:
+Use ES6 Maps with a bunch of convenience methods. Help improve the ES6 spec!
 
 ```js
 var map = new Map();
@@ -48,13 +46,9 @@ You can install this via npm for [node.js](http://nodejs.org) v0.8+
 npm install smap
 ```
 
-Currently, no browser has implemented enough of the spec to support this library without a shim,
-therefore I recommend including [harmony-collections.js](https://raw.github.com/Benvie/harmony-collections/master/harmony-collections.js)
-or [harmony-collections.min.js](https://raw.github.com/Benvie/harmony-collections/master/harmony-collections.min.js)
-before including [smap.js](https://github.com/eriwen/smap.js/downloads):
+In browsers, include [smap.js](https://github.com/eriwen/smap.js/downloads) in your page:
 
 ```html
-<script type="text/javascript" src="https://raw.github.com/Benvie/harmony-collections/master/harmony-collections.js"></script>
 <script type="text/javascript" src="https://raw.github.com/eriwen/smap.js/master/smap.js"></script>
 ```
 

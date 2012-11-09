@@ -4,7 +4,7 @@
   "author": "Eric Wendelin <me@eriwen.com> (http://eriwen.com)",
   "version": "0.1.0",
   "keywords": ["ES6", "Harmony", "Map", "shim", "polyfill"],
-  "homepage": "http://smapjs.com",
+  "homepage": "http://eriwen.github.com/smap.js/",
   "repository": {
     "type": "git",
     "url": "git://github.com/eriwen/smap.js.git"
