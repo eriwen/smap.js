@@ -18,6 +18,15 @@ describe('smap.js', function() {
     });
 
     describe('Map::filter', function() {
+        it('should throw an Error if input is not a function', function() {
+            var expectedError = new TypeError('Expected a function argument');
+            expect(function() { new Map().filter() }).toThrow(expectedError);
+            expect(function() { new Map().filter(42) }).toThrow(expectedError);
+            expect(function() { new Map().filter({'foo': 'bar'}) }).toThrow(expectedError);
+
+            expect(function() { new Map().filter(function(a){}) }).not.toThrow();
+        });
+
         it('should return a new Map', function() {
             var map = new Map();
             map.set('foo', 'bar');
@@ -32,7 +41,7 @@ describe('smap.js', function() {
         it('should return an empty Map if given function excludes all keys', function() {
             var map = new Map();
             map.set('foo', 'bar');
-            var filteredMap = map.filter(function(k, v) {
+            var filteredMap = map.filter(function() {
                 return false;
             });
             expect(filteredMap.keys().length).toEqual(0);
@@ -48,6 +57,31 @@ describe('smap.js', function() {
             expect(filteredMap.keys().length).toEqual(1);
             expect(filteredMap.has('foo')).toBeTruthy();
             expect(filteredMap.has('baz')).toBeFalsy();
+        });
+
+        it('should allow input functions to have as many arguments as necessary', function() {
+            var map = new Map();
+            map.set('foo', 'bar');
+            map.set(13, 37);
+
+            expect(map.filter(function() {return false}).isEmpty()).toBe(true);
+
+            var onlyStringKeys = map.filter(function(k) {
+                return typeof k == 'string';
+            });
+            expect(onlyStringKeys.keys().length).toBe(1);
+            expect(onlyStringKeys.has('foo')).toBe(true);
+
+            var onlyThirtySevens = map.filter(function(k, v) {
+                return v === 37;
+            });
+            expect(onlyThirtySevens.keys().length).toBe(1);
+            expect(onlyThirtySevens.has('foo')).toBe(false);
+
+            var filteredMap = map.filter(function(k, v, index) {
+                return k === 'NON-EXISTANT' && typeof v == 'string' && index < 3;
+            });
+            expect(filteredMap.isEmpty()).toBe(true);
         });
     });
 
@@ -102,11 +136,12 @@ describe('smap.js', function() {
 
     describe('Map::reject', function() {
         it('should throw error if given non-function', function() {
-            var expectedError = new TypeError('Expecting function of arity 2 for input');
+            var expectedError = new TypeError('Expected a function argument');
             expect(function() { new Map().reject() }).toThrow(expectedError);
             expect(function() { new Map().reject(42) }).toThrow(expectedError);
-            expect(function() { new Map().reject(function(a){}) }).toThrow(expectedError);
             expect(function() { new Map().reject({'foo': 'bar'}) }).toThrow(expectedError);
+
+            expect(function() { new Map().reject(function(a){}) }).not.toThrow();
         });
 
         it('should remove items in place', function() {

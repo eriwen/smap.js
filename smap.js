@@ -179,12 +179,12 @@
      * that match the given filter function.
      */
     Map.prototype.filter = function(filterFn) {
-        if (typeof filterFn != 'function' || filterFn.length !== 2) {
-            throw new TypeError('Expecting function of arity 2 for input');
+        if (typeof filterFn != 'function') {
+            throw new TypeError('Expected a function argument');
         }
         var _map = new Map();
-        this.iterate(function(key, value) {
-            if(filterFn(key, value)) {
+        this.iterate(function(key, value, index) {
+            if(filterFn(key, value, index)) {
                 _map.set(key, value);
             }
         });
@@ -201,7 +201,7 @@
             throw new TypeError('Cannot merge with objects that are not Maps');
         }
 
-        function setAll(key, value, index) {
+        function setAll(key, value) {
             _map.set(key, value);
         }
         var _map = new Map();
@@ -239,11 +239,11 @@
      * In-place delete
      */
     Map.prototype.reject = function(filterFn) {
-        if (typeof filterFn != 'function' || filterFn.length !== 2) {
-            throw new TypeError('Expecting function of arity 2 for input');
+        if (typeof filterFn != 'function') {
+            throw new TypeError('Expected a function argument');
         }
-        this.iterate(function(key, value) {
-            if(filterFn(key, value)) {
+        this.iterate(function(key, value, index) {
+            if(filterFn(key, value, index)) {
                 this['delete'](key);
             }
         }.bind(this));
