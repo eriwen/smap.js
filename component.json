@@ -1,0 +1,15 @@
+{
+  "name": "smap",
+  "repo": "eriwen/smap.js",
+  "description": "A forward polyfill for ES6 Maps",
+  "author": "Eric Wendelin",
+  "homepage": "http://eriwen.github.com/smap.js/",
+  "version": "0.1.1",
+  "keywords": ["es6", "harmony", "map", "shim", "polyfill"],
+  "dependencies": {},
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "smap.js"
+  ]
+}

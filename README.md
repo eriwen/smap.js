@@ -40,17 +40,15 @@ map.isEmpty();
 ```
 
 ## Installation
-You can install this via npm for [node.js](http://nodejs.org) v0.8+
-
-```shell
-npm install smap
-```
-
 In browsers, include [smap.js](https://github.com/eriwen/smap.js/downloads) in your page:
 
 ```html
 <script type="text/javascript" src="https://raw.github.com/eriwen/smap.js/master/smap.js"></script>
 ```
+
+You can install this via npm for [node.js](http://nodejs.org) v0.8+: `npm install smap`
+
+Also available for [component(1)](https://github.com/component/component): `component install eriwen/smap`
 
 ### Environment Support
 If you also use the [es5-shim](https://github.com/kriskowal/es5-shim), you can use this in:
