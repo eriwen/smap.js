@@ -2,12 +2,11 @@
 Use ES6 Maps with a bunch of convenience methods. Help improve the ES6 spec!
 
 ```js
-var map = new Map();
-map.set('foo', 'bar');
+var map = new Map([['foo', 'bar']]);
 map.set(0, 42);
 
 // Filter map by a function
-map.filter(function(key, value, index) {
+map.filter(function(key, value, map) {
    return typeof key == 'string';
 });
 => new Map([[0, 42]])
@@ -25,7 +24,7 @@ map.invert();
 => new Map([[42, 0], ['thing', 'baz']])
 
 // Destructive filter (inline map delete)
-map.reject(function(key, value, index) {
+map.reject(function(key, value, map) {
   return index < 3;
 });
 map.has('thing');
@@ -40,10 +39,10 @@ map.isEmpty();
 ```
 
 ## Installation
-In browsers, include [smap.js](https://github.com/eriwen/smap.js/downloads) in your page:
+In browsers, include [smap-shim.js](https://github.com/eriwen/smap.js/downloads) in your page:
 
 ```html
-<script type="text/javascript" src="https://raw.github.com/eriwen/smap.js/master/smap.js"></script>
+<script type="text/javascript" src="https://raw.github.com/eriwen/smap.js/master/smap-shim.js"></script>
 ```
 
 You can install this via:
@@ -56,13 +55,12 @@ You can install this via:
 If you also use the [es5-shim](https://github.com/kriskowal/es5-shim), you can use this in:
 
  * IE9+
+ * Firefox 13+
  * Google Chrome 21+
  * Safari 4+
  * Opera 12+
  * Node.js 0.8+
  * PhantomJS
-
-**NOTE:** Firefox is not yet supported due to its partial implementation of `Map` without `.keys()`. See [issue #4](https://github.com/eriwen/smap.js/issues/4).
 
 ## Why this project exists
 Boris Smus [makes an excellent suggestion](http://smus.com/how-the-web-should-work/) for moving the web forward: *forward polyfills*.

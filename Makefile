@@ -1,5 +1,11 @@
 BROWSER_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 
+combine:
+	cat spec/lib/es6-map-shim.js smap.js > smap-shim.js
+
+deploy: combine phantom
+	npm publish
+
 browser:
 	open spec/SpecRunner.html
 
