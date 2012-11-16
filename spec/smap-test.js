@@ -1,22 +1,4 @@
 describe('smap.js', function() {
-    describe('Map::clear', function() {
-        it ('should remove all items', function() {
-            var map = new Map();
-            map.set('foo', 'bar');
-            map.set(5, 43);
-            expect(map.keys().length).toEqual(2);
-            map.clear();
-            expect(map.keys().length).toEqual(0);
-        });
-
-        it('should not disturb empty Map', function() {
-            var map = new Map();
-            expect(map.keys().length).toEqual(0);
-            map.clear();
-            expect(map.keys().length).toEqual(0);
-        });
-    });
-
     describe('Map::filter', function() {
         it('should throw an Error if input is not a function', function() {
             var expectedError = new TypeError('Expected a function argument');
@@ -132,6 +114,11 @@ describe('smap.js', function() {
             var map = new Map();
             expect(map.invert()).toEqual(new Map());
         });
+
+        it('should return new Map with keys->values and values->keys', function() {
+            var map = new Map([['foo', 'bar'], [1, 2]]);
+            expect(map.invert()).toEqual(new Map([['bar', 'foo'], [2, 1]]));
+        });
     });
 
     describe('Map::reject', function() {
@@ -145,10 +132,7 @@ describe('smap.js', function() {
         });
 
         it('should remove items in place', function() {
-            var map = new Map();
-            map.set('foo', 'bar');
-            map.set(1, 2);
-            map.set('baz', 6);
+            var map = new Map([['foo', 'bar'], [1, 2], ['baz', 6]]);
 
             map.reject(function(k, v) {
                 return !isNaN(parseFloat(v)) && isFinite(v);
@@ -165,8 +149,7 @@ describe('smap.js', function() {
         });
 
         it('should reports maps with >0 items as non-empty', function() {
-            var map = new Map();
-            map.set('foo', 'bar');
+            var map = new Map([['foo', 'bar']]);
             expect((map).isEmpty()).toBe(false);
         });
     });

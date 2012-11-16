@@ -2,7 +2,7 @@
   "name": "smap",
   "description": "A forward polyfill with ES6 Map utilities",
   "author": "Eric Wendelin <me@eriwen.com> (http://eriwen.com)",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "keywords": ["es6", "harmony", "map", "shim", "polyfill"],
   "homepage": "http://eriwen.github.com/smap.js/",
   "repository": {
@@ -19,6 +19,9 @@
   "main": "./smap.js",
   "engines": {
     "node": ">= 0.8.0"
+  },
+  "dependencies": {
+    "es6-map-shim": ">= 0.2.1"
   },
   "scripts": {
     "test": "make jstd"
