@@ -22,7 +22,7 @@
         // More reliable indexOf, courtesy of @WebReflection
         var betterIndexOf = function(value) {
             if(value != value || value === 0) {
-                for(var i = this.length; i-- && !is(this[i], value););
+                for(var i = this.length; i-- && !is(this[i], value);){}
             } else {
                 i = [].indexOf.call(this, value);
             }
@@ -273,7 +273,7 @@
         }
         this.forEach(function(value, key, map) {
             if(filterFn(key, value, map)) {
-                map.delete(key);
+                map['delete'](key);
             }
         }.bind(this));
     };

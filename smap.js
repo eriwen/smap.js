@@ -81,7 +81,7 @@
         }
         this.forEach(function(value, key, map) {
             if(filterFn(key, value, map)) {
-                map.delete(key);
+                map['delete'](key);
             }
         }.bind(this));
     };
