@@ -42,7 +42,7 @@ map.isEmpty();
 In browsers, include [smap-shim.js](https://github.com/eriwen/smap.js/downloads) in your page:
 
 ```html
-<script type="text/javascript" src="https://raw.github.com/eriwen/smap.js/master/smap-shim.js"></script>
+<script type="text/javascript" src="https://raw.github.com/eriwen/smap.js/master/smap-shim.min.js"></script>
 ```
 
 You can install this via:
